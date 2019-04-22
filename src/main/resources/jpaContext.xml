@@ -7,7 +7,12 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-	<!-- bean para que spring use las anotaciones del api de persistencia -->
+
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.pluralsight"/>
+
+	<!-- bean para que spring inyecte las anotaciones del api de persistencia -->
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
@@ -15,7 +20,7 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<!-- es el nombre que está en nuestro archivo de persisstence.xml -->
 		<property name="persistenceUnitName" value="punit" />
-		<property name="dataSource" ref="datasource" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -28,8 +33,8 @@
 					es MySQL -->
 				<entry key="hibernate.dialect"
 					value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-				<!-- se usa para todo lo relacionado con ddl en la bd -->
-				<entry key="hibernate.hbm2ddl.auto" value="none" />
+				<!-- se usa para todo lo relacionado con ddl en la bd, puede crear la BD al iniciar y borrarla al finalizar la APP -->
+				<entry key="hibernate.hbm2ddl.auto" value="create" />
 				<!-- esto es para proposito de debugging -->
 				<entry key="hibernate.format_sql" value="true" />
 			</map>
