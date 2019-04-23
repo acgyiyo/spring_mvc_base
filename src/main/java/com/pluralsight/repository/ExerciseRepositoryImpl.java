@@ -5,18 +5,18 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.pluralsight.model.Goal;
+import com.pluralsight.model.Exercise;
 
-@Repository("goalRepository")
-public class GoalRepositoryImpl implements GoalRepository {
+@Repository("exerciseRepository")
+public class ExerciseRepositoryImpl implements ExerciseRepository {
 
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Goal save(Goal goal) {
-		em.persist(goal);
+	public Exercise save(Exercise exercise) {
+		em.persist(exercise);
 		em.flush();
-		return goal;
+		return exercise;
 	}
 
 }
