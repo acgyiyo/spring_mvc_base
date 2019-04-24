@@ -12,13 +12,13 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="com.pluralsight"/>
 
-	<!-- bean para que spring inyecte las anotaciones del api de persistencia -->
+	<!--#acg bean para que spring inyecte las anotaciones del api de persistencia -->
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<!-- es el nombre que está en nuestro archivo de persisstence.xml -->
+		<!--#acg es el nombre que está en nuestro archivo de persisstence.xml -->
 		<property name="persistenceUnitName" value="punit" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
@@ -29,25 +29,25 @@
 		</property>
 		<property name="jpaPropertyMap">
 			<map>
-				<!-- dialecto usado por hibernate para contactar la BD, en este caso 
+				<!--#acg dialecto usado por hibernate para contactar la BD, en este caso 
 					es MySQL -->
 				<entry key="hibernate.dialect"
 					value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-				<!-- se usa para todo lo relacionado con ddl en la bd, puede crear la BD al iniciar y borrarla al finalizar la APP -->
+				<!--#acg se usa para todo lo relacionado con ddl en la bd, puede crear la BD al iniciar y borrarla al finalizar la APP -->
 				<entry key="hibernate.hbm2ddl.auto" value="create" />
-				<!-- esto es para proposito de debugging -->
+				<!--#acg esto es para proposito de debugging -->
 				<entry key="hibernate.format_sql" value="true" />
 			</map>
 		</property>
 	</bean>
 
-	<!-- beans para el manejo de excpeiones pero de jpa no de jdbc -->
+	<!--#acg beans para el manejo de excpeiones pero de jpa no de jdbc -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory"></property>
 	</bean>
-	<!-- con este estamos diciendo que vamos a manejar transacciones con anotaciones -->
+	<!--#acg con este estamos diciendo que vamos a manejar transacciones con anotaciones -->
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 		

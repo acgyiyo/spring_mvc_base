@@ -1,7 +1,10 @@
 package com.pluralsight.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +20,14 @@ public class GoalRepositoryImpl implements GoalRepository {
 		em.persist(goal);
 		em.flush();
 		return goal;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Goal> findAll() {
+		Query query = em.createQuery("select g from Goal g");
+		
+		return query.getResultList();
 	}
 
 }

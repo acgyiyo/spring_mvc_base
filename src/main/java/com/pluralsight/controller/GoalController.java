@@ -1,5 +1,8 @@
 package com.pluralsight.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import com.pluralsight.service.GoalService;
 @Controller
 @SessionAttributes("goal")
 public class GoalController {
-	
+
 	@Autowired
 	private GoalService goalService;
 
@@ -26,24 +29,33 @@ public class GoalController {
 		Goal goal = new Goal();
 		goal.setMinutes(10);
 		model.addAttribute("goal", goal);
-		
+
 		return "addGoal";
 	}
-	
+
 	@RequestMapping(value = "addGoal", method = RequestMethod.POST)
 	public String updateGoal(@Valid @ModelAttribute("goal") Goal goal, BindingResult result) {
-		
+
 		System.out.println("result has errors: " + result.hasErrors());
-		
+
 		System.out.println("Goal set: " + goal.getMinutes());
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return "addGoal";
-		}else {
+		} else {
 			goalService.save(goal);
 		}
-		
+
 		return "redirect:index.jsp";
 	}
-	
+
+	@RequestMapping(value = "getGoals", method = RequestMethod.GET)
+	public String getGoal(Model model) {
+		List<Goal> goals = goalService.findAllGoals();
+
+		model.addAttribute("goals", goals);
+
+		return "getGoals";
+	}
+
 }
