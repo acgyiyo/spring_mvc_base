@@ -3,6 +3,7 @@ package com.pluralsight.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.pluralsight.model.Goal;
+import com.pluralsight.model.GoalReport;
 import com.pluralsight.service.GoalService;
 
 @Controller
@@ -25,9 +27,13 @@ public class GoalController {
 	private GoalService goalService;
 
 	@RequestMapping(value = "addGoal", method = RequestMethod.GET)
-	public String addGoal(Model model) {
-		Goal goal = new Goal();
-		goal.setMinutes(10);
+	public String addGoal(Model model, HttpSession session) {
+		Goal goal = (Goal) session.getAttribute("goal");
+
+		if (goal == null) {
+			goal = new Goal();
+			goal.setMinutes(10);
+		}
 		model.addAttribute("goal", goal);
 
 		return "addGoal";
@@ -56,6 +62,15 @@ public class GoalController {
 		model.addAttribute("goals", goals);
 
 		return "getGoals";
+	}
+
+	@RequestMapping(value = "goalReport", method = RequestMethod.GET)
+	public String getGoalReports(Model model) {
+		List<GoalReport> goalReports = goalService.findGoalReports();
+
+		model.addAttribute("goalReports", goalReports);
+
+		return "goalReport";
 	}
 
 }

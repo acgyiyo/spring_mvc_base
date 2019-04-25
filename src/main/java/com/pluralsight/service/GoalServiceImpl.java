@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pluralsight.model.Goal;
+import com.pluralsight.model.GoalReport;
 import com.pluralsight.repository.GoalRepository;
 
 @Service("goalService")
@@ -23,5 +24,10 @@ public class GoalServiceImpl implements GoalService {
 	@Override
 	public List<Goal> findAllGoals() {
 		return goalRepository.findAll();
+	}
+
+	@Override
+	public List<GoalReport> findGoalReports() {
+		return goalRepository.findGoalReports();
 	}
 }
