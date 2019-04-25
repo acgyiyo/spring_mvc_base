@@ -18,13 +18,15 @@ import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "goals")
-@NamedQueries({ @NamedQuery(name = Goal.FIND_ALL_GOALS, query = "select g from Goal g"),
-		@NamedQuery(name = Goal.FIND_GOAL_REPORTS, query = "select new com.pluralsight.model.GoalReport(g.minutes, e.minutes, e.activity) "
-				+ "from Goal g, Exercise e where g.id = e.goal.id") })
+
+//se quitan los namedQuerys para trabajar con la implementación de SpingDataJpa
+//@NamedQueries({ @NamedQuery(name = Goal.FIND_ALL_GOALS, query = "select g from Goal g"),
+//		@NamedQuery(name = Goal.FIND_GOAL_REPORTS, query = "select new com.pluralsight.model.GoalReport(g.minutes, e.minutes, e.activity) "
+//				+ "from Goal g, Exercise e where g.id = e.goal.id") })
 public class Goal {
 
-	public static final String FIND_ALL_GOALS = "findAllgoals";
-	public static final String FIND_GOAL_REPORTS = "findGoalReports";
+//	public static final String FIND_ALL_GOALS = "findAllgoals";
+//	public static final String FIND_GOAL_REPORTS = "findGoalReports";
 
 	@Id
 	@GeneratedValue

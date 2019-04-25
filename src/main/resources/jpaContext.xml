@@ -15,7 +15,7 @@
 	<context:component-scan base-package="com.pluralsight"/>
 	
 <!-- #acg	Se indica el paquete de reopsitorios para el jpa parael spring data	 -->
-	<jpa:repositories base-package="com.pluralsight.repository"></jpa:repositories>
+	<jpa:repositories base-package="com.pluralsight.repository"/>
 
 	<!--#acg bean para que spring inyecte las anotaciones del api de persistencia -->
 	<bean
