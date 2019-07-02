@@ -1,5 +1,5 @@
-spring_mvc_example
+spring_mvc_jpa_example
 ===============
 
-Example Project to view spring MVC framework
+Example Project to view spring MVC and jpa framework
 
