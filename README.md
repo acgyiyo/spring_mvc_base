@@ -1,5 +1,5 @@
-spring_security_example
+spring_mvc_example
 ===============
 
-Example Project to view spring MVC and spring security framework
+Example Project to view spring MVC framework
 
